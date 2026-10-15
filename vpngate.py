@@ -421,7 +421,7 @@ def build_chains_text(data):
         "#",
         "# 用法: 在 edgetunnel 节点备注里直接粘贴下面任意一行 (名字与指令连写)",
         "#   例: 日本-住宅-01$sstp://vpn:vpn@vpnxxx.opengw.net:443",
-        "# 名字保持不变, 只有 $sstp:// 后面的地址每 30 分钟自动更换",
+        "# 名字保持不变, 只有 $sstp:// 后面的地址",
         "# 账号密码固定 vpn:vpn ; 端口必须保留",
         "# ========================================================",
     ]
@@ -466,7 +466,7 @@ EDGE_HOSTS = [
     if h.strip()
 ]
 
-HOSTS_URL = os.environ.get("HOSTS_URL", "https://jerylihub.github.io/gate/hosts.txt")
+HOSTS_URL = os.environ.get("HOSTS_URL", "https://liker5092.github.io/gate/hosts.txt")
 
 
 def build_hosts_text(data):
