@@ -483,7 +483,7 @@ def build_hosts_text(data):
         "# 每行 = 入口地址#名字$sstp://vpn:vpn@节点:端口",
         "# 入口用 7 个实测可用优选域名循环分配",
         "# 名字 = 国家-住宅/机房-编号, 直接区分住宅与机房",
-        "# 名字固定; 只有 $sstp:// 后面的节点地址每 30 分钟自动更换",
+        "# 名字固定; 只有 $sstp:// 后面的节点地址",
         "# 账号密码固定 vpn:vpn ; 节点端口必须保留",
         "# ========================================================",
     ]
@@ -522,10 +522,10 @@ def build_hosts_text(data):
 
 
 # edgetunnel 完整订阅 (vless://) 配置
-EDT_UUID = os.environ.get("EDT_UUID", "d5120ea7-98f3-4df4-8cc1-ac0301042e7c")
-EDT_DOMAIN = os.environ.get("EDT_DOMAIN", "learntwo.wono.asia")
+EDT_UUID = os.environ.get("EDT_UUID", "59c6998f-58eb-4fb3-9061-4d4b92d39b58")
+EDT_DOMAIN = os.environ.get("EDT_DOMAIN", "help.qip.asia")
 EDT_FINGERPRINT = os.environ.get("EDT_FINGERPRINT", "chrome")
-SUB_URL = os.environ.get("SUB_URL", "https://jerylihub.github.io/gate/sub.txt")
+SUB_URL = os.environ.get("SUB_URL", "https://liker5092.github.io/gate/sub.txt")
 
 
 def _b64_secret_encode(plaintext, secret):
@@ -569,7 +569,7 @@ def build_sub_text(data):
         f"# 自动更新: {data['generated_at']} (每 30 分钟重新检测)",
         f"# 固定地址: {SUB_URL}",
         f"# 节点域名: {EDT_DOMAIN} (传输 ws / TLS / fingerprint {EDT_FINGERPRINT})",
-        "# 名字固定; $sstp:// 链式代理(编码在 path)每 30 分钟自动更换",
+        "# 名字固定; $sstp:// 链式代理(编码在 path)",
         "# 账号密码固定 vpn:vpn ; 节点端口已编码进 path",
         "# ========================================================",
     ]
