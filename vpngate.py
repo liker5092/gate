@@ -412,11 +412,11 @@ CHAIN_URL = os.environ.get("CHAIN_URL", "https://jerylihub.github.io/gate/chains
 
 def build_chains_text(data):
     """生成 edgetunnel 链式代理清单: 按国家分组, 每国编号固定, 住宅优先, 延迟升序。
-    每行 = 「名字 + $sstp://vpn:vpn@host:port」, 名字不变, 指令每 30 分钟自动换。"""
+    每行 = 「名字 + $sstp://vpn:vpn@host:port」, 名字不变, 指令每 天自动换。"""
     countries = data["countries"]
     lines = [
         "# VPN Gate SSTP 节点 -> edgetunnel 链式代理清单",
-        f"# 自动更新: {data['generated_at']} (每 30 分钟重新检测)",
+        f"# 自动更新: {data['generated_at']} ",
         f"# 固定地址: {CHAIN_URL}",
         "#",
         "# 用法: 在 edgetunnel 节点备注里直接粘贴下面任意一行 (名字与指令连写)",
@@ -471,14 +471,14 @@ HOSTS_URL = os.environ.get("HOSTS_URL", "https://liker5092.github.io/gate/hosts.
 
 def build_hosts_text(data):
     """生成可直接粘贴到 edgetunnel 后台「自定义优选IP」框的清单。
-    每行 = 入口地址#名字$sstp://... ; 名字固定, 底下 SSTP 节点每 30 分钟自动换。"""
+    每行 = 入口地址#名字$sstp://... ; 名字固定, 底下 SSTP 节点每 天自动换。"""
     countries = data["countries"]
     # 入口: 默认用 7 个实测可用优选域名循环分配; 可用 HOSTS_ENTRY 覆盖(逗号分隔)
     _entry = os.environ.get("HOSTS_ENTRY", "").strip()
     edge = [e.strip() for e in _entry.split(",") if e.strip()] or EDGE_HOSTS or [f"{EDT_DOMAIN}:443"]
     lines = [
         "# edgetunnel「自定义优选IP」清单 (整段复制, 追加到后台现有内容后面)",
-        f"# 自动更新: {data['generated_at']} (每 30 分钟重新检测)",
+        f"# 自动更新: {data['generated_at']} (每天重新检测)",
         f"# 固定地址: {HOSTS_URL}",
         "# 每行 = 入口地址#名字$sstp://vpn:vpn@节点:端口",
         "# 入口用 7 个实测可用优选域名循环分配",
@@ -566,7 +566,7 @@ def build_sub_text(data):
     countries = data["countries"]
     lines = [
         "# edgetunnel 完整订阅 (vless://) —— 填进后台「订阅链接」URL",
-        f"# 自动更新: {data['generated_at']} (每 30 分钟重新检测)",
+        f"# 自动更新: {data['generated_at']} (每天重新检测)",
         f"# 固定地址: {SUB_URL}",
         f"# 节点域名: {EDT_DOMAIN} (传输 ws / TLS / fingerprint {EDT_FINGERPRINT})",
         "# 名字固定; $sstp:// 链式代理(编码在 path)",
